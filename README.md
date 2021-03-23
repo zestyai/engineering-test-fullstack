@@ -15,12 +15,12 @@ real estate properties. Using your language(s) and framework(s) of choice, you w
 back-end for your application and connect to the provided PostgreSQL database.
 
 Your application should include some required features, and may also include optional features. Implementing required 
-features is expected to take up to 4 hours. If you feel like implementing optional features, you may spend more than 4 
+features is expected to take around 4 hours. If you feel like implementing optional features, you may spend more than 4 
 hours. Pick whichever optional features you think you can do best.
 
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of
 features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical 
-production project. Be prepared to explain any decisions you made.
+production project. Be prepared to discuss decisions you made.
 
 ### Required features
 
@@ -29,6 +29,8 @@ production project. Be prepared to explain any decisions you made.
   
 * **Property detail page:** Show detailed information about a given property, including its image, geographic location, 
   and statistics (if applicable).
+
+* **Containerization:** Include Docker image(s) of your application when submitting your final code.
 
 ### Optional features
 
@@ -57,9 +59,6 @@ production project. Be prepared to explain any decisions you made.
     `geocode_geo` field in the property table.
   * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the 
     `geocode_geo` point. Then, calculate the percentage of that zone geography which has buildings in it.
-    
-* **Containerization:** Include Docker image(s) of your application when submitting your final code.
-
 
 ## Setup
 ### Development environment requirements
