@@ -55,7 +55,7 @@ production project. Be prepared to discuss decisions you made.
   Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
   * buildings areas (array, meters squared)
-  * buildings distances to center (array, meters squared).  Distance to center is the distance from the building to the 
+  * buildings distances to center (array, meters).  Distance to center is the distance from the building to the 
     `geocode_geo` field in the property table.
   * zone density (percentage).  Create a "zone" geography, which is a buffer of *distance* meters around the 
     `geocode_geo` point. Then, calculate the percentage of that zone geography which has buildings in it.
