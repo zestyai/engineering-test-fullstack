@@ -16,7 +16,7 @@ This test is an opportunity for you to demonstrate your comfort with developing 
 
 ## Assignment
 
-Your goal is to create a full-stack web application that allows users to search for and retrieve information about real estate properties (see [Feature List](#feature-list)). Using your language(s) and framework(s) of choice, you will need to create a front-end and back-end (see [API Specification](#api-specification)) for your application and connect to the provided PostgreSQL database. Your UI and API should both be packaged as containerized services (Docker images).
+Your goal is to create a full-stack web application that allows users to search for and retrieve information about real estate properties (see [Feature List](#feature-list)). Using your language(s) and framework(s) of choice, you will need to create a front-end and back-end (see [API Specification](#api-specification)) for your application and connect to the provided PostgreSQL database (see [Setup](#setup)). Your UI and API should both be packaged as containerized services (Docker images).
 
 There are priority features and additional features. Your application should include as many priority features as possible in the time frame allotted. You may also include optional features.
 
