@@ -1,29 +1,32 @@
-# Zesty.ai engineering test (full-stack)
+# Zesty.ai Full-Stack Engineering Test
+
+- [Background](#background)
+- [Assignment](#assignment)
+- [Feature List](#feature-list)
+- [Setup](#setup)
+- [API Specification](#api-specification)
+- [Submission Instructions](#submission-instructions)
 
 ## Background
 
-Full-stack engineers at Zesty.ai develop our web applications end-to-end, working with modern front-end frameworks, APIs 
-(ours and third parties'), and many kinds of data and imagery.
+Full-stack engineers at Zesty.ai develop our web applications end-to-end, working with modern front-end frameworks, APIs (ours and third parties'), and many kinds of data and imagery.
 
-This test is an opportunity for you to demonstrate your comfort with developing both an API and a UI, similar to a 
-day-to-day project you might encounter working on our team.
+This test is an opportunity for you to demonstrate your comfort with developing UI and API services, similar to a day-to-day project you might encounter working on our team.
+
 
 ## Assignment
 
-Your goal is to create a full-stack web application that allows developers to search for and retrieve information about 
-real estate properties. Using your language(s) and framework(s) of choice, you will need to create a front-end and
-back-end for your application and connect to the provided PostgreSQL database.
+Your goal is to create a full-stack web application that allows users to search for and retrieve information about real estate properties (see [Feature List](#feature-list)). Using your language(s) and framework(s) of choice, you will need to create a front-end and back-end (see [API Specification](#api-specification)) for your application and connect to the provided PostgreSQL database (see [Setup](#setup)). Your UI and API should both be packaged as containerized services (Docker images).
 
-Your application should include some required features, and may also include optional features. Implementing required 
-features is expected to take around 4 hours. If you feel like implementing optional features, you may spend more than 4 
-hours. Pick whichever optional features you think you can do best.
+There are priority features and additional features. Your application should include as many priority features as possible in the time frame allotted. You may also include optional features.
 
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of
 features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical 
 production project. Be prepared to discuss decisions you made.
 
-### Required features
+## Feature List
 
+### Priority features
 * **List all properties:** Display, in a tabular format, all properties and their geographic location (longitude and 
   latitude).
   
@@ -61,8 +64,8 @@ production project. Be prepared to discuss decisions you made.
     `geocode_geo` point. Then, calculate the percentage of that zone geography which has buildings in it.
 
 ## Setup
-### Development environment requirements
 
+### Development environment requirements
 You will need to install [Docker](https://www.docker.com/products/docker-desktop) and 
 [`docker-compose`](https://docs.docker.com/compose/install/) to run the example database.
 
@@ -76,124 +79,86 @@ property or address. There are three geography<sup>*</sup> fields and one field 
 
 <sup>*</sup> *If you are not familiar with [PostgreSQL](https://www.postgresql.org/) or [PostGIS](https://postgis.net/), you may need to read up beforehand.*
 
-### API reference
+## API Specification
+The API you will be implementing for this project must adhere to the following API specification:
 
-The API you will be implementing for this project must follow the following API specification.
-
-Note that some endpoints and parameters only apply to optional features.
-
-#### GET /display/:*id*?(overlay=yes(&parcel=:*parcelColor*)(&building=:*buildingColor*))
+### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
 
 *Fetches and displays property tile by ID. Optionally overlays parcel and building geometries on tile.*
 
 `example: GET localhost:1235/display/f853874999424ad2a5b6f37af6b56610?overlay=yes&building=green&parcel=orange`
 
-###### Request Parameters
+##### Request Parameters
+- "id" | description: Property ID | type: string | required: true | validation: length greater than 0
 
-- "id" |
-  description: Property ID |
-  type: string |
-  required: true |
-  validation: length greater than 0
+- "overlay" | description: Overlays parcel and building geometries on tile | type: string | required: false | validation: enum("yes")
 
-- "overlay" |
-  description: Overlays parcel and building geometries on tile |
-  type: string |
-  required: false |
-  validation: enum("yes")
+- "parcel" | description: Indicated building overlay color | type: string | required: false | validation: enum() ex. "red", "green", "orange"
 
-- "parcel" |
-  description: Indicated building overlay color |
-  type: string |
-  required: false |
-  validation: enum(~<color>~) ex. "red", "green", "orange"
+- "building" | description: Indicates building overlay color | type: string | required: false | validation: enum() ex. "red", "green", "orange"
 
-- "building" |
-  description: Indicates building overlay color |
-  type: string |
-  required: false |
-  validation: enum(~<color>~) ex. "red", "green", "orange"
-
-###### Response
-
+##### Response
 JPEG image
 
-#### GET /properties
+***
 
+### GET /properties
 *Lists all properties.*
 
 `example: GET localhost:1235/properties`
 
-###### Response
-
+##### Response
 JSON array of property objects
 
-#### POST /find
 
+***
+### POST /find
 *Finds properties within X meters away from provided geojson point.*
 
 `example: POST localhost:1235/find`
 
-###### Request Body
-
+##### Request Body
 - geojson object with x-distance property
 
 ```
-''    example:
-''
-''    {
-''     "type": "Feature",
-''      "geometry": {
-''        "type": "Point",
-''        "coordinates": [-80.0782213, 26.8849731]
-''      },
-''      "x-distance": 1755000
-''    }
+example:
+
+{
+  "type": "Feature",
+  "geometry": {
+  "type": "Point",
+  "coordinates": [-80.0782213, 26.8849731]
+  },
+  "x-distance": 1755000
+}
 ```
 
-###### Response
-
+##### Response
 JSON array of property IDs
 
-#### GET /statistics/:*id*?distance=:*distance*
+***
+### GET /statistics/:id?distance=:distance
 
 *Returns various statistics for parcels and buildings found X meters around the requested property*
 
 `example: GET localhost:1235/statistics/f853874999424ad2a5b6f37af6b56610?distance=1755000`
 
-###### Request Parameters
+##### Request Parameters
 
-- "id" |
-  description: Property ID |
-  type: string |
-  required: true |
-  validation: length greater than 0
+- "id" | description: Property ID | type: string | required: true | validation: length greater than 0
 
-- "distance" |
-  description: Buffer distance |
-  type: integer |
-  required: true |
-  validation: greater than 0
+- "distance" | description: Buffer distance | type: integer | required: true | validation: greater than 0
 
-###### Response
-
+##### Response
 JSON array including
+- "parcel_area_sqm" | description: Total area of the property's parcel, in square meters | type: float
 
-- "parcel_area_sqm" |
-  description: Total area of the property's parcel, in square meters |
-  type: float
+- "building_area_sqm" | description: Total area of buildings inside the property's parcel, in square meters | type: float
 
-- "building_area_sqm" |
-  description: Total area of buildings inside the property's parcel, in square meters |
-  type: float
+- "building_distances_m" | description: Array of [distance, from the centroid of the property, to the centroid of each building, in meters] | type: List[float]
 
-- "building_distances_m" |
-  description: Array of [distance, from the centroid of the property, to the centroid of each building, in meters] |
-  type: List[float]
-
-- "zone_density" |
-  description: Array of [density of each building's area as a ratio to parcel area, dimensionless] |
-  type: List[float]
+- "zone_density" | description: Array of [density of each building's area as a ratio to parcel area, dimensionless] | type: List[float]
+***
 
 
 ## Submission instructions
