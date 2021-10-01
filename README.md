@@ -14,15 +14,9 @@ Your goal is to create a full-stack web application that allows developers to se
 real estate properties. Using your language(s) and framework(s) of choice, you will need to create a front-end and
 back-end for your application and connect to the provided PostgreSQL database.
 
-Your application should include some required features, and may also include optional features. Implementing required 
-features is expected to take around 4 hours. If you feel like implementing optional features, you may spend more than 4 
-hours. Pick whichever optional features you think you can do best.
-
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of
 features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical 
 production project. Be prepared to discuss decisions you made.
-
-### Required features
 
 * **List all properties:** Display, in a tabular format, all properties and their geographic location (longitude and 
   latitude).
@@ -31,8 +25,6 @@ production project. Be prepared to discuss decisions you made.
   and statistics (if applicable).
 
 * **Containerization:** Include Docker image(s) of your application when submitting your final code.
-
-### Optional features
 
 * **Search by coordinates:** Prompt the user for a longitude, latitude, and search radius (default 10000 meters) and 
   display, in a tabular format, the results of the search, including the properties' geographic location (longitude and 
