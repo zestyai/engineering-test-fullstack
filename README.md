@@ -18,15 +18,12 @@ This test is an opportunity for you to demonstrate your comfort with developing 
 
 Your goal is to create a full-stack web application that allows users to search for and retrieve information about real estate properties (see [Feature List](#feature-list)). Using your language(s) and framework(s) of choice, you will need to create a front-end and back-end (see [API Specification](#api-specification)) for your application and connect to the provided PostgreSQL database (see [Setup](#setup)). Your UI and API should both be packaged as containerized services (Docker images).
 
-There are priority features and additional features. Your application should include as many priority features as possible in the time frame allotted. You may also include optional features.
-
 Note that some features are more difficult than others, and you will be evaluated on more than just the number of
 features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical 
 production project. Be prepared to discuss decisions you made.
 
 ## Feature List
 
-### Priority features
 * **List all properties:** Display, in a tabular format, all properties and their geographic location (longitude and 
   latitude).
   
@@ -34,8 +31,6 @@ production project. Be prepared to discuss decisions you made.
   and statistics (if applicable).
 
 * **Containerization:** Include Docker image(s) of your application when submitting your final code.
-
-### Optional features
 
 * **Search by coordinates:** Prompt the user for a longitude, latitude, and search radius (default 10000 meters) and 
   display, in a tabular format, the results of the search, including the properties' geographic location (longitude and 
