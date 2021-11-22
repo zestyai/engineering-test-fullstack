@@ -2,53 +2,52 @@
 
 - [Background](#background)
 - [Assignment](#assignment)
-- [Feature List](#feature-list)
+- [Features](#features)
 - [Setup](#setup)
 - [API Specification](#api-specification)
 - [Submission Instructions](#submission-instructions)
 
 ## Background
 
-Full-stack engineers at Zesty.ai develop our web applications end-to-end, working with modern front-end frameworks, APIs (ours and third parties'), and many kinds of data and imagery.
+Full-stack engineers at Zesty.ai develop our web applications end-to-end, working with modern front-end frameworks, APIs (ours and third parties'), and many kinds of data and imagery. We passionately apply our skills and experience to further the Zesty.ai mission of helping protect families, communities,
+and their financial well-being in the face of frequent natural disasters. Read more about us at [zesty.ai/about](https://www.zesty.ai/about).
 
-This test is an opportunity for you to demonstrate your comfort with developing UI and API services, similar to a day-to-day project you might encounter working on our team.
+This test is an opportunity for you to demonstrate your comfort with developing basic UI and API services while interacting with property data, similar to a day-to-day project you might encounter working on our team.
 
 
 ## Assignment
 
-Your goal is to create a full-stack web application that allows users to search for and retrieve information about real estate properties (see [Feature List](#feature-list)). Using your language(s) and framework(s) of choice, you will need to create a front-end and back-end (see [API Specification](#api-specification)) for your application and connect to the provided PostgreSQL database (see [Setup](#setup)). Your UI and API should both be packaged as containerized services (Docker images).
+Your goal is to create a full-stack web application that allows users to search for- and retrieve information about real estate properties. Using your language(s) and framework(s) of choice, you will create a front-end and back-end (see [API Specification](#api-specification)) for your application. Your UI and API should both be packaged as containerized services (Docker images). We have provided you with a PostgreSQL database service (see [Setup](#setup)) to access example property data.
 
-Note that some features are more difficult than others, and you will be evaluated on more than just the number of
-features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical 
-production project. Be prepared to discuss decisions you made.
+## Features
 
-## Feature List
+There are **required** and **optional** features in this assignment. 
 
-* **List all properties:** Display, in a tabular format, all properties and their geographic location (longitude and 
+You *must* include the required features (see [Required Features](#required-features)) in your test submission. Some features may be more difficult than others, but you will be evaluated on more than just the number of required features completed. Quality is preferred over quantity. Design, organize, and comment your code as you would a typical production project. Be prepared to discuss decisions you made.
+
+If you complete the required features, are having a lot of fun with this (we hope you are!), and are looking to make your assignment stand out more, then we encourage you to take on some of the [optional features](#optional-features).
+
+### Required Features
+* **List all properties:** Display, in a tabular format, all properties and their geographic location (longitude and
   latitude).
-  
-* **Property detail page:** Show detailed information about a given property, including its image, geographic location, 
-  and statistics (if applicable).
-
+* **Property detail page:** Show detailed information about a given property, including its image, geographic location,
+    and statistics (if applicable).
 * **Containerization:** Include Docker image(s) of your application when submitting your final code.
 
-* **Search by coordinates:** Prompt the user for a longitude, latitude, and search radius (default 10000 meters) and 
-  display, in a tabular format, the results of the search, including the properties' geographic location (longitude and 
+### Optional Features
+* **Search by coordinates:** Prompt the user for a longitude, latitude, and search radius (default 10000 meters) and
+  display, in a tabular format, the results of the search, including the properties' geographic location (longitude and
   latitude).
-
 * **Map view:** Using the 
   [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview), display a map 
   centered around either the user's current location, or an address they enter. Display a marker on the map for each 
   property. Clicking on a marker should reveal an 
   [Info Window](https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple) with key 
   property information.
-
 * **Save for later:** Allow users to save properties from the List, Search, Detail, and/or Map pages and visit their 
   list of saved properties.
-
 * **Image overlays:** Add polygonal overlays to property images to represent either the parcel, building, or both 
   (`parcel_geo` and `buildings_geo` fields in the database).
-
 * **Statistics:** Calculate geographic data about all properties within a given distance from a reference property. 
   Take *propertyId* and *distance* (in meters) as inputs. The API should return the following:
   * parcel area (meters squared)
@@ -77,6 +76,7 @@ property or address. There are three geography<sup>*</sup> fields and one field 
 ## API Specification
 The API you will be implementing for this project must adhere to the following API specification:
 
+***
 ### GET /display/:id?(overlay=yes(&parcel=:parcelColor)(&building=:buildingColor))
 
 *Fetches and displays property tile by ID. Optionally overlays parcel and building geometries on tile.*
